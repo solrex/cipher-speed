@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final TextView tv = (TextView) findViewById(R.id.console);
-        tv.append("# Speed Test of 10MB Random Bytes Enc/Decryption #\n");
+        tv.append("# Speed Test of 10MB Data Enc/Decryption #\n");
         @SuppressLint("HandlerLeak") final Handler log_handle = new Handler(){
             @Override
             public void handleMessage(Message msg) {

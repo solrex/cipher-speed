@@ -8,6 +8,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Random;
 
 import javax.crypto.BadPaddingException;
@@ -54,7 +55,7 @@ public class CipherBenchmark {
             IvParameterSpec aes_iv = new IvParameterSpec(random_bytes(16));
             IvParameterSpec des_iv = new IvParameterSpec(random_bytes(8));
             byte[] plain = random_bytes(10*1024*1024);
-            byte[] cipher_data;
+            byte[] cipher_data, dec_plain;
             //byte[] plain = "Test Cipher".getBytes();
 
             long start_time = 0;
@@ -70,14 +71,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, aes_key_128, aes_iv);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             transfomation = "AES/CBC/NoPadding";
             cipher = Cipher.getInstance(transfomation);
@@ -85,14 +90,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, aes_key_128, aes_iv);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             transfomation = "AES/ECB/PKCS5Padding";
             cipher = Cipher.getInstance(transfomation);
@@ -100,14 +109,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, aes_key_128);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             transfomation = "AES/ECB/NoPadding";
             cipher = Cipher.getInstance(transfomation);
@@ -115,14 +128,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, aes_key_128);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             transfomation = "AES/GCM/NOPADDING";
             cipher = Cipher.getInstance(transfomation);
@@ -130,14 +147,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, aes_key_128, aes_iv);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             print("# DES: ");
             // DES Require IV 8 bytes long
@@ -147,14 +168,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, des_key, des_iv);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             transfomation = "DES/CBC/NoPadding";
             cipher = Cipher.getInstance(transfomation);
@@ -162,14 +187,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, des_key, des_iv);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             transfomation = "DES/ECB/PKCS5Padding";
             cipher = Cipher.getInstance(transfomation);
@@ -177,14 +206,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, des_key);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             transfomation = "DES/ECB/NoPadding";
             cipher = Cipher.getInstance(transfomation);
@@ -192,14 +225,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, des_key);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             print("# DESede: ");
             transfomation = "DESede/CBC/PKCS5Padding";
@@ -208,14 +245,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, desede_key, des_iv);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             transfomation = "DESede/CBC/NoPadding";
             cipher = Cipher.getInstance(transfomation);
@@ -223,14 +264,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, desede_key, des_iv);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             transfomation = "DESede/ECB/PKCS5Padding";
             cipher = Cipher.getInstance(transfomation);
@@ -238,14 +283,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, desede_key);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             transfomation = "DESede/ECB/NoPadding";
             cipher = Cipher.getInstance(transfomation);
@@ -253,14 +302,18 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = cipher.doFinal(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             cipher.init(Cipher.DECRYPT_MODE, desede_key);
             start_time = System.nanoTime();
-            cipher.doFinal(cipher_data);
+            dec_plain = cipher.doFinal(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
 
             print("# TEA: ");
             transfomation = "TEA";
@@ -268,13 +321,17 @@ public class CipherBenchmark {
             start_time = System.nanoTime();
             cipher_data = tea.encrypt(plain);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            print("* [" + transfomation + "] ENC: " + String.format("%.1f", plain.length/time_diff/1024) + " KB/ms");
             start_time = System.nanoTime();
-            tea.decrypt(cipher_data);
+            dec_plain = tea.decrypt(cipher_data);
             end_time = System.nanoTime();
-            time_diff = (end_time - start_time)/1e3;
-            print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff) + " bytes/us");
+            time_diff = (end_time - start_time)/1e6;
+            if (!Arrays.equals(dec_plain, plain)) {
+                print(transfomation + " DECRYPT FAILED");
+            } else {
+                print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
+            }
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchPaddingException e) {
