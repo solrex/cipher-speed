@@ -13,5 +13,9 @@
 #pragma mark Console
 @property (nonatomic,strong) IBOutlet UITextView *console;
 
+- (char *)random_bytes:(NSUInteger) len;
+
+- (void)runtest;
+
 @end
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19544F4A1FC1C8C7008B1E54 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19544F491FC1C8C7008B1E54 /* Security.framework */; };
 		196C742B1FBE890A001F4F15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 196C742A1FBE890A001F4F15 /* main.m */; };
 		196C742E1FBE890A001F4F15 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 196C742D1FBE890A001F4F15 /* AppDelegate.m */; };
 		196C74311FBE890A001F4F15 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 196C74301FBE890A001F4F15 /* ViewController.m */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		19544F491FC1C8C7008B1E54 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		196C74261FBE890A001F4F15 /* CipherSpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CipherSpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		196C742A1FBE890A001F4F15 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		196C742C1FBE890A001F4F15 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -33,17 +35,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19544F4A1FC1C8C7008B1E54 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19544F481FC1C8C7008B1E54 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				19544F491FC1C8C7008B1E54 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		196C741D1FBE890A001F4F15 = {
 			isa = PBXGroup;
 			children = (
 				196C74281FBE890A001F4F15 /* CipherSpeed */,
 				196C74271FBE890A001F4F15 /* Products */,
+				19544F481FC1C8C7008B1E54 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -316,6 +328,7 @@
 				196C743F1FBE890A001F4F15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
