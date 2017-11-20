@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1944A79D1FC3229B0098C433 /* tea.c in Sources */ = {isa = PBXBuildFile; fileRef = 1944A79B1FC3229B0098C433 /* tea.c */; };
 		19544F4A1FC1C8C7008B1E54 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19544F491FC1C8C7008B1E54 /* Security.framework */; };
 		196C742B1FBE890A001F4F15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 196C742A1FBE890A001F4F15 /* main.m */; };
 		196C742E1FBE890A001F4F15 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 196C742D1FBE890A001F4F15 /* AppDelegate.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1944A79B1FC3229B0098C433 /* tea.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tea.c; sourceTree = "<group>"; };
+		1944A79C1FC3229B0098C433 /* tea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tea.h; sourceTree = "<group>"; };
 		19544F491FC1C8C7008B1E54 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		196C74261FBE890A001F4F15 /* CipherSpeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CipherSpeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		196C742A1FBE890A001F4F15 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 				196C74371FBE890A001F4F15 /* LaunchScreen.storyboard */,
 				196C743A1FBE890A001F4F15 /* Info.plist */,
 				196C74291FBE890A001F4F15 /* Supporting Files */,
+				1944A79B1FC3229B0098C433 /* tea.c */,
+				1944A79C1FC3229B0098C433 /* tea.h */,
 			);
 			path = CipherSpeed;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1944A79D1FC3229B0098C433 /* tea.c in Sources */,
 				196C74311FBE890A001F4F15 /* ViewController.m in Sources */,
 				196C742E1FBE890A001F4F15 /* AppDelegate.m in Sources */,
 				196C742B1FBE890A001F4F15 /* main.m in Sources */,
