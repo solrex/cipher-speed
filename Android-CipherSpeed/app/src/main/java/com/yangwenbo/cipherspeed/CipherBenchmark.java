@@ -238,7 +238,7 @@ public class CipherBenchmark {
                 print("* [" + transfomation + "] DEC: " + String.format("%.1f", cipher_data.length/time_diff/1024) + " KB/ms");
             }
 
-            print("# DESede: ");
+            print("# 3DES: ");
             transfomation = "DESede/CBC/PKCS5Padding";
             cipher = Cipher.getInstance(transfomation);
             cipher.init(Cipher.ENCRYPT_MODE, desede_key, des_iv);
